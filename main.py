@@ -10,8 +10,15 @@ def validate_case(value):
         sys.exit()
 
 
+def to_snake_case(value):
+    return "_".join(value.lower().split())
+
+
 def convert(value):
-    pass
+    if target_case == cases[0]:
+        return to_snake_case(value)
+    else:
+        pass
 
 
 print("Добро пожаловать в конвертер регистров!")
