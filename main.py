@@ -63,7 +63,7 @@ def get_split_symbol(value):
     elif is_kebab_case(value):
         return "-"
     else:
-        return ""
+        return " "
 
 
 def convert(value):
