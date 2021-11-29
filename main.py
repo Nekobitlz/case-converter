@@ -19,11 +19,17 @@ def to_snake_case(value):
     return "_".join(value.lower().split())
 
 
+def to_constant_case(value):
+    return "_".join(value.upper().split())
+
+
 def convert(value):
     if target_case == cases[0]:
         return to_snake_case(value)
     elif target_case == cases[1]:
         return to_camel_case(value)
+    elif target_case == cases[2]:
+        return to_constant_case(value)
     else:
         pass
 
