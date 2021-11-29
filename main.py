@@ -18,18 +18,27 @@ def to_camel_case(value):
 
 
 def to_snake_case(value):
-    split_symbol = get_split_symbol(value)
-    return "_".join(value.lower().split(split_symbol))
+    if is_camel_case(value):
+        return re.sub(r'(?<!^)(?=[A-Z])', '_', value).lower()
+    else:
+        split_symbol = get_split_symbol(value)
+        return "_".join(value.lower().split(split_symbol))
 
 
 def to_constant_case(value):
-    split_symbol = get_split_symbol(value)
-    return "_".join(value.upper().split(split_symbol))
+    if is_camel_case(value):
+        return re.sub(r'(?<!^)(?=[A-Z])', '_', value).upper()
+    else:
+        split_symbol = get_split_symbol(value)
+        return "_".join(value.upper().split(split_symbol))
 
 
 def to_kebab_case(value):
-    split_symbol = get_split_symbol(value)
-    return "-".join(value.lower().split(split_symbol))
+    if is_camel_case(value):
+        return re.sub(r'(?<!^)(?=[A-Z])', '-', value).lower()
+    else:
+        split_symbol = get_split_symbol(value)
+        return "-".join(value.lower().split(split_symbol))
 
 
 def is_snake_case(value):
@@ -42,6 +51,10 @@ def is_kebab_case(value):
 
 def is_constant_case(value):
     return re.match('(.*?)_([A-Z])', value)
+
+
+def is_camel_case(value):
+    return re.match('(.+?)([A-Z])', value)
 
 
 def get_split_symbol(value):
