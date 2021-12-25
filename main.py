@@ -10,6 +10,11 @@ def validate_case(value):
         sys.exit()
 
 
+def to_camel_case(value):
+    content = "".join(value.title().split())
+    return content[0].lower() + content[1:]
+
+
 def to_snake_case(value):
     return "_".join(value.lower().split())
 
@@ -17,6 +22,8 @@ def to_snake_case(value):
 def convert(value):
     if target_case == cases[0]:
         return to_snake_case(value)
+    elif target_case == cases[1]:
+        return to_camel_case(value)
     else:
         pass
 
