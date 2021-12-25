@@ -23,6 +23,10 @@ def to_constant_case(value):
     return "_".join(value.upper().split())
 
 
+def to_kebab_case(value):
+    return "-".join(value.lower().split())
+
+
 def convert(value):
     if target_case == cases[0]:
         return to_snake_case(value)
@@ -30,6 +34,8 @@ def convert(value):
         return to_camel_case(value)
     elif target_case == cases[2]:
         return to_constant_case(value)
+    elif target_case == cases[3]:
+        return to_kebab_case(value)
     else:
         pass
 
