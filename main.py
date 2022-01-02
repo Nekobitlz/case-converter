@@ -3,11 +3,12 @@ import re
 import sys
 
 cases = ["snake_case", "camelCase", "CONSTANT_CASE", "kebab-case"]
+validation_error = "Указанный регистр не поддерживается"
 
 
 def validate_case(value):
     if value not in cases:
-        print("Указанный регистр не поддерживается")
+        print(validation_error)
         sys.exit()
 
 
@@ -54,7 +55,7 @@ def is_constant_case(value):
 
 
 def is_camel_case(value):
-    return re.match('(.+?)([A-Z])', value)
+    return not is_constant_case(value) and re.match('(.+?)([A-Z])', value)
 
 
 def get_split_symbol(value):
@@ -66,7 +67,7 @@ def get_split_symbol(value):
         return " "
 
 
-def convert(value):
+def convert(target_case, value):
     if target_case == cases[0]:
         return to_snake_case(value)
     elif target_case == cases[1]:
@@ -76,24 +77,25 @@ def convert(value):
     elif target_case == cases[3]:
         return to_kebab_case(value)
     else:
-        pass
+        return validation_error
 
 
-print("Добро пожаловать в конвертер регистров!")
-print("Доступные регистры: snake_case, camelCase, CONSTANT_CASE, kebab-case")
+if __name__ == "__main__":
+    print("Добро пожаловать в конвертер регистров!")
+    print("Доступные регистры:", ', '.join(cases))
 
-target_case = input("Введите желаемый регистр: ").strip()
-validate_case(target_case)
-file_path = input("Введите путь к файлу или строку, которую нужно конвертировать: ").strip()
+    case = input("Введите желаемый регистр: ").strip()
+    validate_case(case)
+    file_path = input("Введите путь к файлу или строку, которую нужно конвертировать: ").strip()
 
-if os.path.exists(file_path):
-    file = open(file_path, 'r')
-    file_data = file.read()
-    converted_file_data = convert(file_data)
-    converted_file = open(file_path + "converted", "w")
-    converted_file.write(converted_file_data)
-    file.close()
-    converted_file.close()
-    print("Файл успешно записан")
-else:
-    print(convert(file_path))
+    if os.path.exists(file_path):
+        file = open(file_path, 'r')
+        file_data = file.read()
+        converted_file_data = convert(case, file_data)
+        converted_file = open(file_path + "converted", "w")
+        converted_file.write(converted_file_data)
+        file.close()
+        converted_file.close()
+        print("Файл успешно записан")
+    else:
+        print(convert(case, file_path))
