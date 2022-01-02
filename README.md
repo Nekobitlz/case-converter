@@ -1,4 +1,7 @@
 # Конвертер регистров
+![run-tests](https://github.com/Nekobitlz/case-converter/actions/workflows/test.yml/badge.svg)
+
+
 ## Описание 
 Данный сервис позволяет перевести строку или содержимое файла в один из следующих регистров: snake_case, camelCase, CONSTANT_CASE, kebab-case. 
 Допускается перевод между разными регистрами.
