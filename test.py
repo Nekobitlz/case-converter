@@ -45,11 +45,3 @@ def test_convert_to_other_case():
     assert main.convert("kebab-case", "camelCase") == "camel-case"
     assert main.convert("kebab-case", "CONSTANT_CASE") == "constant-case"
     assert main.convert("kebab-case", "snake_case") == "snake-case"
-
-
-test_convert_case_error()
-test_convert_camel_case()
-test_convert_snake_case()
-test_convert_constant_case()
-test_convert_kebab_case()
-test_convert_to_other_case()
