@@ -1,5 +1,7 @@
 # Конвертер регистров
-![run-tests](https://github.com/Nekobitlz/case-converter/actions/workflows/test.yml/badge.svg)
+![develop](https://github.com/Nekobitlz/case-converter/actions/workflows/test.yml/badge.svg?branch=develop) - develop
+
+![main](https://github.com/Nekobitlz/case-converter/actions/workflows/test.yml/badge.svg?branch=main) - main
 
 
 ## Описание 
